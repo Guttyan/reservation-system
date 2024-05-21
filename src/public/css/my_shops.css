@@ -1,0 +1,88 @@
+.no-results {
+    margin-top: 180px;
+    font-size: 20px;
+}
+
+.ttl {
+    margin-top: 130px;
+    margin-bottom: 40px;
+    font-size: 40px;
+    text-align: center;
+}
+
+/* 店舗カード */
+.shop-card__wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.shop-card {
+    width: 48%;
+    height: 60vh;
+    background: white;
+    border-radius: 7px;
+    box-shadow: 4px 4px 4px gray;
+    overflow-y: auto;
+    margin-bottom: 60px;
+}
+
+.shop-card__img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.shop-card__content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-card__name {
+    font-size: 25px;
+}
+
+.shop-card__details {
+    display: flex;
+    margin-top: 20px;
+}
+
+.shop-card__text-area,
+.shop-card__text-genre {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.shop-card__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap:wrap;
+}
+
+.shop-card__btn{
+    display: inline-block;
+    font-size: 20px;
+    width: 48%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #f2f2f2;
+    background: #1964fa;
+    border-radius: 5px;
+    margin-bottom:10px;
+}
+
+.shop-card__btn:hover {
+    background: #0b418f;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .shop-card {
+        width: 100%;
+    }
+}

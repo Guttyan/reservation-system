@@ -1,0 +1,242 @@
+.header{
+    width:40%;
+}
+
+.shop-wrapper{
+    margin-top:160px;
+    width:47%;
+}
+
+.shop-header{
+    display:flex;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.back-btn{
+    display:inline-block;
+    width:40px;
+    height:40px;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px gray;
+    background:white;
+    text-align:center;
+    line-height:40px;
+    margin-right:20px;
+}
+
+.fa-chevron-left{
+    font-size:20px;
+}
+
+.shop-name{
+    font-size:30px;
+}
+
+.shop-image{
+    width:100%;
+}
+
+/* スライドショー */
+.slideshow-fade {
+    position: relative;
+    width: 100%;
+    height: 420px;
+}
+
+.slideshow-fade__li {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-fade__img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.shop__text-area,
+.shop__text-genre{
+    display:inline-block;
+    margin-top:30px;
+    margin-right:10px;
+    font-size:20px;
+}
+
+.shop__text-comment{
+    font-size:20px;
+    margin-top:30px;
+    line-height:30px;
+}
+
+.reservation-form__wrapper{
+    width:40%;
+    height:85vh;
+    position:fixed;
+    top:50px;
+    right:7.5vw;
+    background: #1964fa;
+    border-radius: 7px;
+    padding:40px 0 0 30px;
+    box-sizing:border-box;
+    overflow: hidden;
+}
+
+.reservation-form__head{
+    font-size:30px;
+    color:white;
+}
+
+.reservation-form__input-date{
+    display:block;
+    margin-top:40px;
+    width:30%;
+    height:40px;
+    border-radius: 7px;
+    padding:0 10px;
+    font-size:16px;
+}
+
+.reservation-form__input{
+    width:90%;
+    position:relative;
+    margin-top: 20px;
+}
+
+.fa-sort-down{
+    position:absolute;
+    top:43%;
+    right:15px;
+    font-size:20px;
+}
+
+.reservation-form__input-time,
+.reservation-form__input-number,
+.reservation-form__input-course {
+    width:100%;
+    border-radius: 7px;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+    appearance: none;
+}
+
+.form__error{
+    color:red;
+    font-size:15px;
+    margin-top:10px;
+}
+
+.reservation-form__table-wrapper{
+    width: 80%;
+    color: white;
+    background: #4e82fd;
+    border-radius: 7px;
+    margin-top: 20px;
+    padding:30px 20px;
+    padding-bottom:10px;
+    font-size:18px;
+}
+
+.reservation-form__table-data{
+    padding-left:40px;
+}
+
+.reservation-form__table-head,
+.reservation-form__table-data{
+    padding-bottom:20px;
+}
+
+.reservation-form__reserve-btn{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    height:70px;
+    border:none;
+    background:#052cf5;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.reservation-form__reserve-btn--stripe{
+    width: 100%;
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    height: 70px;
+    border: none;
+    background: #052cf5;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-bottom:1px solid black;
+}
+
+.reservation-form__reserve-btn:hover,
+.reservation-form__reserve-btn--stripe:hover {
+    background: #0b418f;
+    transition: 0.3s ease;
+}
+
+/* レビュー */
+.reviews-wrapper{
+    margin-top:40px;
+}
+
+.average-rating{
+    display:flex;
+    align-items: center;
+}
+
+.average-rating__text,
+.average-rating__number,
+.rating-stars{
+    margin-right:10px;
+    font-size:20px;
+}
+
+.rating-stars{
+    display:flex;
+    align-items: center;
+}
+
+.all-review__btn{
+    margin:10px 0;
+}
+
+.review__comment{
+    margin-top:5px;
+}
+
+.review{
+    padding:10px 10px;
+    width:100%;
+    border-bottom:1px solid black;
+}
+
+@media (max-width: 768px) {
+    .header {
+        width: 100%;
+    }
+
+    .shop-wrapper {
+        width: 100%;
+    }
+
+    .reservation-form {
+        width: 100%;
+        height: 80vh;
+        position:static;
+        margin:50px 0;
+    }
+
+    .reservation-form__reserve-btn {
+        border-radius:0 0 7px 7px;
+    }
+}

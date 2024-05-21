@@ -1,0 +1,39 @@
+.content {
+    width: 500px;
+    height: 250px;
+    background: white;
+    box-shadow: 4px 4px 4px gray;
+    margin: 140px auto;
+    text-align: center;
+    padding-top: 120px;
+    border-radius: 5px;
+}
+
+.content__text {
+    font-weight: normal;
+    font-size: 27px;
+}
+
+.return__link {
+    display: inline-block;
+    margin-top: 50px;
+    width:70px;
+    height: 35px;
+    line-height: 35px;
+    background: #1964fa;
+    border-radius: 5px;
+    color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 60vw;
+        height: 200px;
+        padding-top: 90px;
+        min-width: 300px;
+    }
+
+    .content__text {
+        font-size: 20px;
+    }
+}

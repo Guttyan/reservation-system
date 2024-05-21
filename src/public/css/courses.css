@@ -1,0 +1,160 @@
+.shop-name {
+    margin-top: 130px;
+    margin-bottom: 40px;
+    font-size:40px;
+    text-align:center;
+}
+
+.form__error {
+    color: red;
+    width:70%;
+    margin:0 auto;
+    margin-bottom: 5px;
+}
+
+.create-course__wrapper{
+    width:70%;
+    margin:0 auto;
+    background:white;
+    box-shadow: 4px 4px 4px gray;
+    border-radius: 5px;
+    padding:20px;
+    box-sizing: border-box;
+}
+
+.create-form__header{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.create-form{
+    display:flex;
+    align-items: center;
+}
+
+.create-form__input-name{
+    border:1px solid black;
+    border-radius: 5px;
+    width:400px;
+    height:30px;
+    margin-right:20px;
+    font-size:15px;
+}
+
+.create-form__input-price{
+    border: 1px solid black;
+    border-radius: 5px;
+    height:30px;
+    margin-right: 20px;
+    font-size:15px;
+}
+
+.create-form__input-price::after {
+    content: "円";
+    position: absolute;
+    margin-left: 5px;
+}
+
+.create-form__btn{
+    height:30px;
+    line-height:30px;
+    border:none;
+    border-radius: 5px;
+    color:white;
+    background: #052cf5;
+    cursor:pointer;
+    font-size:20px;
+    padding:0 10px;
+}
+
+.create-form__btn:hover {
+    background: #0b418f;
+    transition: 0.3s ease;
+}
+
+.courses-table {
+    width: 70%;
+    margin: 30px auto;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px gray;
+    overflow: hidden;
+}
+
+.courses-table__row {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.courses-table__header {
+    padding-left: 30px;
+    color: white;
+    background: #1964fa;
+}
+
+.courses-table__name,
+.courses-table__price{
+    width:35%;
+}
+
+.courses-table__update,
+.courses-table__delete {
+    width: 15%;
+}
+
+.courses-table__item {
+    padding:10px 0;
+    padding-left: 30px;
+    color: white;
+    background: #4e82fd;
+}
+
+.update__input-name{
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:20px;
+}
+
+.update__input-price {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    width:100px;
+}
+
+.update__btn{
+    width:100px;
+    margin:0 auto;
+    padding:10px;
+    color:white;
+    background: #052cf5;
+    cursor: pointer;
+    border:none;
+    border-radius:5px;
+    font-size:15px;
+}
+
+.update__btn:hover {
+    background: #0b418f;
+    transition: 0.3s ease;
+}
+
+.delete__btn {
+    width: 100px;
+    margin:0 auto;
+    padding: 10px;
+    color: white;
+    background: #ff5858;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.delete__btn:hover {
+    background: #ff0000;
+    transition: 0.3s ease;
+}
