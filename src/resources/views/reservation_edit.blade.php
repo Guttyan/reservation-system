@@ -115,6 +115,17 @@
         <p>{{ $message }}</p>
         @enderror
     </div>
+    @if($courses->isNotEmpty())
+    <div class="reservation-form__input">
+        <select name="course_id" class="reservation-form__input-course">
+            <option value="">コースを選択しない</option>
+            @foreach($courses as $course)
+                <option value="{{ $course->id }}" data-price="{{ $course->price }}" @if($reservation->course_id == $course->id) selected @endif>{{ $course->name }} - {{ $course->price }}円</option>
+            @endforeach
+        </select>
+        <i class="fa-solid fa-sort-down"></i>
+    </div>
+    @endif
     <div class="reservation-form__table-wrapper">
         <table class="reservation-form__table">
             <tr class="reservation-form__table-row">
@@ -133,6 +144,12 @@
                 <td class="reservation-form__table-head">Number</td>
                 <td class="reservation-form__table-data reservation-form__table-data--number"></td>
             </tr>
+            @if($courses->isNotEmpty())
+                <tr class="reservation-form__table-row">
+                    <td class="reservation-form__table-head">Total</td>
+                    <td class="reservation-form__table-data reservation-form__table-data--total"></td>
+                </tr>
+            @endif
         </table>
     </div>
     <button class="reservation-form__reserve-btn">予約内容変更</button>
@@ -149,14 +166,34 @@
         const dateInput = document.querySelector('.reservation-form__input-date');
         const timeInput = document.querySelector('.reservation-form__input-time');
         const numberInput = document.querySelector('.reservation-form__input-number');
+        const courseInput = document.querySelector('.reservation-form__input-course');
         const dateData = document.querySelector('.reservation-form__table-data--date');
         const timeData = document.querySelector('.reservation-form__table-data--time');
         const numberData = document.querySelector('.reservation-form__table-data--number');
+        const totalData = document.querySelector('.reservation-form__table-data--total');
 
-        dateData.textContent = dateInput.value;
-        timeData.textContent = timeInput.value;
-        numberData.textContent = numberInput.value + '人';
+        // 初期値の設定
+        const initialTime = timeInput.value;
+        const initialNumber = numberInput.value;
+        const initialCoursePrice = courseInput ? parseInt(courseInput.options[courseInput.selectedIndex].dataset.price) : 0;
+        const initialNumberOfPeople = parseInt(initialNumber);
+        const initialTotalPrice = initialCoursePrice * initialNumberOfPeople;
+        timeData.textContent = initialTime;
+        numberData.textContent = initialNumber + '人';
+        totalData.textContent = initialTotalPrice ? initialTotalPrice + '円' : '';
 
+        function updateTotal() {
+            const coursePrice = courseInput ? parseInt(courseInput.options[courseInput.selectedIndex].dataset.price) : 0;
+            const numberOfPeople = parseInt(numberInput.value);
+            if (coursePrice && numberOfPeople) {
+                const totalPrice = coursePrice * numberOfPeople;
+                totalData.textContent = totalPrice + '円';
+            } else {
+                totalData.textContent = '';
+            }
+        }
+
+        // 各入力フィールドのイベントリスナー
         dateInput.addEventListener('input', function () {
             dateData.textContent = this.value;
         });
@@ -168,10 +205,22 @@
         numberInput.addEventListener('change', function () {
             if (this.value !== '') {
                 numberData.textContent = this.options[this.selectedIndex].text;
+                updateTotal(); // numberが変更された場合、Totalを更新
             } else {
                 numberData.textContent = '';
+                totalData.textContent = ''; // numberが空の場合、Totalを空欄にする
             }
         });
+
+        if (courseInput) {
+            courseInput.addEventListener('change', function () {
+                if (this.value !== '') {
+                    updateTotal(); // courseが変更された場合、Totalを更新
+                } else {
+                    totalData.textContent = ''; // courseが空の場合、Totalを空欄にする
+                }
+            });
+        }
     });
 
     // スライドショー
@@ -196,8 +245,6 @@
             allReviews.style.display = "none";
         }
     });
-
-
 </script>
 
 @endsection

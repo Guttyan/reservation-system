@@ -165,8 +165,8 @@
         const totalData = document.querySelector('.reservation-form__table-data--total');
 
         function updateTotal() {
-            const coursePrice = courseInput ? courseInput.options[courseInput.selectedIndex].dataset.price : 0;
-            const numberOfPeople = numberInput.value;
+            const coursePrice = courseInput ? parseInt(courseInput.options[courseInput.selectedIndex].dataset.price) : 0;
+            const numberOfPeople = parseInt(numberInput.value);
             if (coursePrice && numberOfPeople) {
                 const totalPrice = coursePrice * numberOfPeople;
                 totalData.textContent = totalPrice + '円';
@@ -175,9 +175,7 @@
             }
         }
 
-        dateData.textContent = dateInput.value;
-        timeData.textContent = timeInput.value;
-
+        // 各入力フィールドのイベントリスナー
         dateInput.addEventListener('input', function () {
             dateData.textContent = this.value;
         });
@@ -189,31 +187,21 @@
         numberInput.addEventListener('change', function () {
             if (this.value !== '') {
                 numberData.textContent = this.options[this.selectedIndex].text;
-                updateTotal();
+                updateTotal(); // numberが変更された場合、Totalを更新
             } else {
                 numberData.textContent = '';
+                totalData.textContent = ''; // numberが空の場合、Totalを空欄にする
             }
         });
 
         if (courseInput) {
             courseInput.addEventListener('change', function () {
-                updateTotal();
+                if (this.value !== '') {
+                    updateTotal(); // courseが変更された場合、Totalを更新
+                } else {
+                    totalData.textContent = ''; // courseが空の場合、Totalを空欄にする
+                }
             });
-        }
-
-        const errors = document.querySelectorAll('.form__error');
-        if (errors.length > 0) {
-            const lastDate = '{{ old('date') }}';
-            const lastTime = '{{ old('time') }}';
-            const lastNumber = '{{ old('number') }}';
-            const lastCourse = '{{ old('course') }}';
-            dateData.textContent = lastDate;
-            timeData.textContent = lastTime;
-            numberData.textContent = lastNumber !== '' ? lastNumber + '人' : '';
-            if (lastCourse) {
-                courseInput.value = lastCourse;
-                updateTotal();
-            }
         }
     });
 
