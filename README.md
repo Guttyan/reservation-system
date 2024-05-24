@@ -83,7 +83,7 @@ docker-compose up -d --build
 
 **Laravel環境構築**  
 docker-compose exec php bash  
-composer install  
+composer install --ignore-platform-req=ext-gd  
 cd src  
 cp .env.example .env　環境変数を変更  
 Mailhog環境変数  
