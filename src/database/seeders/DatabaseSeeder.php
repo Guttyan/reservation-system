@@ -15,12 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(GenresTableSeeder::class);
-        $this->call(AreasTableSeeder::class);
-        $this->call(ShopsTableSeeder::class);
-        $this->call(ShopGenreTableSeeder::class);
-        $this->call(RolesAndPermissionsSeeder::class);
-
         // 管理者のユーザーを作成
         $user = User::create([
             'name' => 'Admin User',
@@ -28,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('11111111'),
             'email_verified_at' => now(),
         ]);
+
+        $this->call(GenresTableSeeder::class);
+        $this->call(AreasTableSeeder::class);
+        $this->call(ShopsTableSeeder::class);
+        $this->call(ShopGenreTableSeeder::class);
+        $this->call(RolesAndPermissionsSeeder::class);
 
         // 管理者の役割を付与
         $user->assignRole('admin');

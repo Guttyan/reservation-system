@@ -20,7 +20,8 @@ class ReservationController extends Controller
             'date' => $request->date,
             'time' => $request->time,
             'number' => $request->number,
-            'course_id' => $request->course_id ?? null
+            'course_id' => $request->course_id ?? null,
+            'qr_code' => null
         ];
 
         $reservation = Reservation::create($reservation_data);

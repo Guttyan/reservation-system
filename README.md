@@ -84,10 +84,38 @@ docker-compose up -d --build
 **Laravel環境構築**  
 docker-compose exec php bash  
 composer install  
-exit  
 cd src  
-cp .env.examlple .env　環境変数を変更  
+cp .env.example .env　環境変数を変更  
 Mailhog環境変数  
-MAIL_FROM_ADDRESS=your-email@example.com
+MAIL_FROM_ADDRESS=your-email@example.com  
 php artisan key:generate  
 php artisan migrate  
+php artisan db:seed  
+composer require swiftmailer/swiftmailer  
+
+スケジュールの設定  
+apt-get update  
+apt-get install nano  
+apt-get install cron  
+crontab -e  
+0 8 * * * PATH=/usr/local/bin/php:/usr/bin:/bin /usr/local/bin/php /var/www/artisan reservation:reminder >> /var/www/storage/logs/laravel.log 2>&1　を記述  
+service cron start  
+dpkg-reconfigure tzdata　対話方式に従ってAsia/Tokyoに設定  
+
+composer require laravel/cashier  
+composer require stripe/stripe-php  
+.envファイルに下記を記述  
+STRIPE_KEY=your-stripe-key  
+STRIPE_SECRET=your-stripe-secret  
+
+storage/app/public/shop_imagesディレクトリを作成  
+storage/app/public/qr_codesディレクトリを作成  
+php artisan storage:link  
+
+QRコード  
+apt-get update  
+apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev  
+docker-php-ext-configure gd --with-freetype --with-jpeg  
+docker-php-ext-install gd  
+composer require simplesoftwareio/simple-qrcode  
+composer require intervention/image  

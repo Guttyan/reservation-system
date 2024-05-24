@@ -19,10 +19,8 @@ class StripeController extends Controller
         $reservationData = $request->only(['date', 'time', 'number', 'course_id', 'shop_id']);
         Session::put('reservation_data', $reservationData);
 
-        // Stripeの秘密キーをセットアップ
         Stripe::setApiKey(config('services.stripe.secret_key'));
 
-        // コースIDから価格を取得
         $course = Course::findOrFail($request->course_id);
         $total_amount = $course->price * $request->number;
 
