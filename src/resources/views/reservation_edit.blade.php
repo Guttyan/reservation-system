@@ -84,7 +84,7 @@
     </div>
     <div class="reservation-form__input">
         <select class="reservation-form__input-time" name="time">
-                @for ($hour = 8; $hour < 24; $hour++)
+                @for ($hour = 12; $hour < 24; $hour++)
                     @for ($minute = 0; $minute < 60; $minute += 15)
                         @php
                             $formatted_hour = str_pad($hour, 2, '0', STR_PAD_LEFT);

@@ -20,6 +20,9 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->unsignedTinyInteger('number');
+            $table->string('qr_code');
+            $table->foreignId('course_id')->nullable()->constrained('courses')->cascadeOnDelete();
+            $table->string('payment_method')->default('other');
             $table->timestamps();
         });
     }

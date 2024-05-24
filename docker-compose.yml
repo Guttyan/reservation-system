@@ -45,6 +45,7 @@ services:
             - mysql
         ports:
             - 8080:80
+        platform: linux/amd64
 
     mail:
         image: mailhog/mailhog
@@ -56,3 +57,4 @@ services:
             MH_MAILDIR_PATH: /tem
         volumes:
             - maildir:/tmp
+        platform: linux/amd64
