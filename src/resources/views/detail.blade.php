@@ -203,6 +203,19 @@
                 }
             });
         }
+
+        // 全てのレビューを表示ボタンのクリックイベントリスナー
+        const showAllReviewsBtn = document.getElementById('showAllReviews');
+        const allReviewsDiv = document.getElementById('all-reviews');
+        showAllReviewsBtn.addEventListener('click', function() {
+            if (allReviewsDiv.style.display === 'none' || allReviewsDiv.style.display === '') {
+                allReviewsDiv.style.display = 'block';
+                showAllReviewsBtn.textContent = 'レビューを隠す';
+            } else {
+                allReviewsDiv.style.display = 'none';
+                showAllReviewsBtn.textContent = 'すべてのレビューを表示';
+            }
+        });
     });
 
     // スライドショー

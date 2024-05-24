@@ -103,6 +103,12 @@
     left:0;
 }
 
+@media (min-width: 769px) and (max-width: 1200px) {
+    .shop-card__content{
+        padding:25px 5px;
+    }
+}
+
 @media (max-width: 768px) {
     .shop-card {
         width: calc(50% - 8px);

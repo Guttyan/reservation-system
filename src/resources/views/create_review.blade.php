@@ -56,7 +56,7 @@
     </div>
 
     <h2 class="review-form__head">レビューする</h2>
-    <form action="/create/review" method="POST">
+    <form action="/create/review" method="POST" class="review-form">
         @csrf
         <div class="form-group">
             <p class="input-head">５段階評価</p>

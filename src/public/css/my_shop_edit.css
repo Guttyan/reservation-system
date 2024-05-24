@@ -86,8 +86,7 @@
 }
 
 .input-explanation {
-    width: 80%;
-    max-width: 600px;
+    width: 70%;
     height: 300px;
     border-radius: 3px;
     display: inline-block;
@@ -165,4 +164,11 @@
 .preview-item img {
     max-width: 100%;
     max-height: 100%;
+}
+
+@media (max-width: 768px) {
+    .edit-form__btn-edit,
+    .edit-form__btn-back{
+        font-size:20px;
+    }
 }

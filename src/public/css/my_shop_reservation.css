@@ -56,3 +56,9 @@
     color: white;
     background: #4e82fd;
 }
+
+@media (max-width: 768px) {
+    .reservation-table{
+        width:100%;
+    }
+}

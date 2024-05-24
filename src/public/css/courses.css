@@ -1,70 +1,65 @@
 .shop-name {
     margin-top: 130px;
     margin-bottom: 40px;
-    font-size:40px;
-    text-align:center;
+    font-size: 40px;
+    text-align: center;
 }
 
 .form__error {
     color: red;
-    width:70%;
-    margin:0 auto;
+    width: 70%;
+    margin: 0 auto;
     margin-bottom: 5px;
 }
 
-.create-course__wrapper{
-    width:70%;
-    margin:0 auto;
-    background:white;
+.create-course__wrapper {
+    width: 100%;
+    margin: 0 auto;
+    background: white;
     box-shadow: 4px 4px 4px gray;
     border-radius: 5px;
-    padding:20px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
-.create-form__header{
-    font-size:30px;
-    margin-bottom:20px;
+.create-form__header {
+    font-size: 30px;
+    margin-bottom: 20px;
 }
 
-.create-form{
-    display:flex;
+.create-form {
+    display: flex;
     align-items: center;
 }
 
-.create-form__input-name{
-    border:1px solid black;
-    border-radius: 5px;
-    width:400px;
-    height:30px;
-    margin-right:20px;
-    font-size:15px;
-}
-
-.create-form__input-price{
+.create-form__input-name {
     border: 1px solid black;
     border-radius: 5px;
-    height:30px;
+    width: 400px;
+    height: 30px;
     margin-right: 20px;
-    font-size:15px;
+    font-size: 15px;
 }
 
-.create-form__input-price::after {
-    content: "円";
-    position: absolute;
-    margin-left: 5px;
-}
-
-.create-form__btn{
-    height:30px;
-    line-height:30px;
-    border:none;
+.create-form__input-price {
+    border: 1px solid black;
     border-radius: 5px;
-    color:white;
+    height: 30px;
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+.create-form__btn {
+    height: 50px;
+    line-height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
     background: #052cf5;
-    cursor:pointer;
-    font-size:20px;
-    padding:0 10px;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0 10px;
+    width: 200px;
 }
 
 .create-form__btn:hover {
@@ -73,11 +68,13 @@
 }
 
 .courses-table {
-    width: 70%;
+    width: 100%;
     margin: 30px auto;
     border-radius: 5px;
     box-shadow: 4px 4px 4px gray;
     overflow: hidden;
+    box-sizing: border-box;
+    table-layout: fixed;
 }
 
 .courses-table__row {
@@ -88,14 +85,14 @@
 }
 
 .courses-table__header {
-    padding-left: 30px;
+    padding-left: 20px;
     color: white;
     background: #1964fa;
 }
 
 .courses-table__name,
-.courses-table__price{
-    width:35%;
+.courses-table__price {
+    width: 35%;
 }
 
 .courses-table__update,
@@ -104,17 +101,21 @@
 }
 
 .courses-table__item {
-    padding:10px 0;
-    padding-left: 30px;
+    padding: 10px 0;
+    padding-left: 20px;
+    padding-right: 10px;
     color: white;
     background: #4e82fd;
 }
 
-.update__input-name{
-    background:transparent;
-    border:none;
-    color:white;
-    font-size:20px;
+.update__input-name {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .update__input-price {
@@ -122,19 +123,19 @@
     border: none;
     color: white;
     font-size: 20px;
-    width:100px;
+    max-width: 100px;
 }
 
-.update__btn{
-    width:100px;
-    margin:0 auto;
-    padding:10px;
-    color:white;
+.update__btn {
+    width: 100px;
+    margin: 0 auto;
+    padding: 10px;
+    color: white;
     background: #052cf5;
     cursor: pointer;
-    border:none;
-    border-radius:5px;
-    font-size:15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
 }
 
 .update__btn:hover {
@@ -144,7 +145,7 @@
 
 .delete__btn {
     width: 100px;
-    margin:0 auto;
+    margin: 0 auto;
     padding: 10px;
     color: white;
     background: #ff5858;
@@ -157,4 +158,39 @@
 .delete__btn:hover {
     background: #ff0000;
     transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .create-form__input-name {
+        width: 40%;
+    }
+
+    .create-form__input-price {
+        width: 30%;
+    }
+
+    .create-form__btn {
+        width: 20%;
+        min-width: 95px;
+        font-size: 15px;
+        height: 35px;
+    }
+
+    .courses-table__name,
+    .courses-table__price,
+    .courses-table__item,
+    .update__input-price,
+    .update__input-name{
+        font-size:15px;
+    }
+
+    .update__input-price{
+        width:70px;
+    }
+
+    .update__btn,
+    .delete__btn{
+        width:75px;
+        font-size:15px;
+    }
 }

@@ -5,55 +5,6 @@
     text-align: center;
 }
 
-.admin-upper{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    width:80%;
-    margin:0 auto;
-    margin-bottom:30px;
-}
-
-.user-search-form{
-    width:40%;
-    height: 35px;
-    border-radius: 7px;
-    box-shadow: 4px 4px 4px gray;
-    background:white;
-    line-height:35px;
-    overflow: hidden;
-    position:relative;
-}
-
-.user-search__text-input{
-    height:35px;
-    width:calc(100% - 40px);
-    line-height:35px;
-    font-size:12px;
-    position:absolute;
-    top:0;
-    right:0;
-}
-
-.pagination{
-    width:100px;
-    height: 35px;
-    background: #1964fa;
-}
-
-.search-form__btn {
-    height: 35px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding-left: 10px;
-}
-
-.fa-magnifying-glass {
-    font-size: 20px;
-    color: #d8dadf;
-}
-
 .users-table{
     width:80%;
     margin:0 auto;

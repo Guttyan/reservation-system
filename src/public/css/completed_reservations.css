@@ -23,17 +23,17 @@
 
 .reservation-card {
     margin-bottom: 40px;
-    width: calc(33% - 10px);
+    width: calc(50% - 30px);
     background: #1964fa;
     border-radius: 5px;
     box-shadow: 4px 4px 4px gray;
     color: white;
-    margin-right: 16px;
+    margin-right: 30px;
     box-sizing: border-box;
     overflow-y: auto;
 }
 
-.reservation-card:nth-child(3n) {
+.reservation-card:nth-child(2n) {
     margin-right: 0;
 }
 
@@ -67,4 +67,8 @@
 }
 
 @media (max-width: 768px) {
+    .reservation-card {
+        width: 100%;
+        margin-right: 0;
+    }
 }

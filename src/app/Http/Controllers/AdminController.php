@@ -9,7 +9,13 @@ use Spatie\Permission\Models\Role;
 class AdminController extends Controller
 {
     public function getAdmin(){
-        $users = User::all();
+        $admin_role_id = Role::where('name', 'admin')->first()->id;
+        $representative_role_id = Role::where('name', 'representative')->first()->id;
+
+        $users = User::whereDoesntHave('roles', function($query) use ($admin_role_id, $representative_role_id) {
+            $query->whereIn('role_id', [$admin_role_id, $representative_role_id]);
+        })->get();
+
         return view('admin', compact('users'));
     }
 

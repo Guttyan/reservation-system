@@ -29,7 +29,7 @@
             </div>
             <div class="shop-card__actions">
                 <a href="/my-shops/edit/{{ $shop->id }}" class="shop-card__btn">店舗情報更新</a>
-                <a href="/courses/{{ $shop->id }}" class="shop-card__btn">コース情報管理</a>
+                <a href="/courses/{{ $shop->id }}" class="shop-card__btn">コース管理</a>
                 <a href="/my-shops/reservation/{{ $shop->id }}/0" class="shop-card__btn">予約状況確認</a>
                 <a href="/create-mail/{{ $shop->id }}" class="shop-card__btn">メール送信</a>
             </div>
