@@ -1,0 +1,301 @@
+.content{
+    width:100%;
+    display:flex;
+    margin-top:110px;
+}
+
+.shop-wrapper {
+    width: 42%;
+    box-sizing: border-box;
+    position:relative;
+}
+
+.shop-wrapper::after{
+    content:'';
+    height:calc(100% - 230px);
+    width:3px;
+    background:#CCCCCC;
+    position:absolute;
+    right:0;
+    top:80px;
+}
+
+.title{
+    margin:80px auto 80px;
+    font-size:50px;
+    font-weight: normal;
+    width:70%;
+    text-align:left;
+}
+
+/* 店舗カード */
+.shop-card {
+    width: 60%;
+    height: 330px;
+    background: white;
+    border-radius: 7px;
+    box-shadow: 4px 4px 4px gray;
+    overflow-y: auto;
+    margin:0 auto;
+}
+
+.shop-card__img {
+    width: 100%;
+    height: 55%;
+    object-fit: cover;
+}
+
+.shop-card__content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-card__name {
+    font-size: 23px;
+}
+
+.average-rating {
+    display: flex;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+}
+
+.shop-card__details {
+    display: flex;
+    margin-top: 10px;
+}
+
+.shop-card__text-area,
+.shop-card__text-genre {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.shop-card__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 13px;
+}
+
+.shop-card__btn-detail {
+    display: inline-block;
+    font-size: 15px;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #f2f2f2;
+    background: #1964fa;
+    border-radius: 5px;
+}
+
+.shop-card__btn-favorite {
+    width: 40px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.fa-heart {
+    font-size: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.review-form__wrapper{
+    width:58%;
+}
+
+.review-form{
+    width:90%;
+    margin-left: auto;
+}
+
+.form-group{
+    margin-bottom:50px;
+}
+
+.form-group__image{
+    margin-bottom:30px;
+}
+
+.input-head{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    margin-bottom: 20px;
+}
+
+.rating-input {
+    display: none;
+}
+
+.rating-label {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.fa-star{
+    font-size:50px;
+    margin-right:10px;
+}
+
+.rating-input:checked~.rating-label,
+.rating-input:checked~.rating-input+.rating-label,
+.rating-input:hover~.rating-label {
+    color: #1964fa;
+}
+
+.comment-input{
+    width:100%;
+    background-color: #f2f2f2;
+    resize: none;
+    height:180px;
+    font-size:20px;
+    padding:5px 10px;
+    border:3px solid #ccc;
+    box-sizing: border-box;
+}
+
+.char-counter{
+    font-size:15px;
+    text-align:right;
+}
+
+.image-upload {
+    height:180px;
+    border-radius: 4px;
+    padding-top: 80px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.image-upload__comment-upper{
+    color: black;
+    font-size:18px;
+    margin-bottom: 10px;
+}
+
+.image-upload__comment-under{
+    color:black;
+}
+
+.image-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom:30px;
+}
+
+.preview img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.review-form__btn{
+    position:relative;
+    bottom:20px;
+    left:0;
+    transform:translateX(-50%);
+    width:100%;
+    height:80px;
+    border-radius:40px;
+    border:none;
+    background:white;
+    cursor:pointer;
+    font-size:25px;
+}
+
+.review-form__btn:hover {
+    background: #d8dadf;
+    transition: ease 0.3s;
+}
+
+.form__error{
+    color:red;
+    margin-top:5px;
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+    .title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        display: block;
+    }
+
+    .shop-wrapper {
+        width: 100%;
+        margin-top: 150px;
+    }
+
+    .title {
+        font-size: 40px;
+        width: 90%;
+        margin: 80px auto 40px;
+    }
+
+    .shop-wrapper::after {
+        display: none;
+    }
+
+    .shop-card {
+        margin-bottom: 100px;
+    }
+
+    .review-form__wrapper {
+        width: 100%;
+    }
+
+    .review-form {
+        width: 100%;
+        margin-left: 0 auto;
+    }
+
+    .review-form__btn {
+        position: static;
+        transform: translateX(0%);
+        width: 100%;
+        cursor: pointer;
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+}

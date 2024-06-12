@@ -8,6 +8,7 @@ use App\Models\Genre;
 use App\Models\Area;
 use App\Models\Review;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -33,11 +34,16 @@ class ShopController extends Controller
 
     public function detail($shop_id){
         $shop = Shop::where('id', $shop_id)->first();
-        $review = new Review();
-        $averageRating = $review->getAverageRating($shop_id);
-        $reviews = Review::where('shop_id', $shop_id)->get();
         $courses = Course::where('shop_id', $shop_id)->get();
-        return view('detail', compact('shop', 'averageRating', 'reviews', 'courses'));
+        $user_id = Auth::id();
+        $reviews = Review::where('shop_id', $shop_id)->where('user_id', '!=', $user_id)->get();
+        $my_review = Review::where('user_id', $user_id)->where('shop_id', $shop_id)->first();
+        if ($my_review) {
+            if ($my_review->review_image) {
+                $my_review->review_image = json_decode($my_review->review_image);
+            }
+        }
+        return view('detail', compact('shop', 'reviews', 'courses', 'my_review'));
     }
 
     public function search(Request $request){

@@ -58,9 +58,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/mypage/favorite', [MypageController::class, 'toggleFavorite']);
 
     // レビュー
-    Route::get('/reservations/completed', [ReviewController::class, 'completedReservations']);
-    Route::get('/create/review/{reservation_id}', [ReviewController::class, 'getCreateReview']);
-    Route::post('/create/review', [ReviewController::class, 'postCreateReview']);
+    Route::middleware('ensureUserRole:user')->group(function () {
+        Route::get('/create/review/{shop_id}', [ReviewController::class, 'getCreateReview']);
+        Route::post('/create/review', [ReviewController::class, 'postCreateReview']);
+        Route::get('/edit/review/{review_id}', [ReviewController::class, 'getEditReview']);
+        Route::post('/edit/review', [ReviewController::class, 'editReview']);
+    });
+    Route::post('/delete/review', [ReviewController::class, 'deleteReview']);
 
     // 管理者
     Route::middleware('role:admin')->group(function(){

@@ -1,5 +1,5 @@
 .header{
-    width:40%;
+    width:44%;
 }
 
 .shop-wrapper{
@@ -36,19 +36,39 @@
 
 .shop-image{
     width:100%;
+    height:380px;
+    object-fit: cover;
+}
+
+.shop-image.my-review-exists{
+    width:100%;
+    height:230px;
+    object-fit:cover;
 }
 
 /* スライドショー */
 .slideshow-fade {
     position: relative;
     width: 100%;
-    height: 420px;
+    height: 380px;
+}
+
+.slideshow-fade.my-review-exists {
+    position: relative;
+    width: 100%;
+    height: 230px;
 }
 
 .slideshow-fade__li {
     list-style: none;
     width: 100%;
-    height: 100%;
+    height: 380px;
+}
+
+.slideshow-fade__li.my-review-exists {
+    list-style: none;
+    width: 100%;
+    height: 230px;
 }
 
 .slideshow-fade__img {
@@ -56,7 +76,16 @@
     left: 0;
     top: 0;
     width: 100%;
-    height:100%;
+    height:380px;
+    object-fit: cover;
+}
+
+.slideshow-fade__img.my-review-exists {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 230px;
     object-fit: cover;
 }
 
@@ -68,10 +97,125 @@
     font-size:20px;
 }
 
+.shop__text-area.my-review-exists,
+.shop__text-genre.my-review-exists {
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
 .shop__text-comment{
     font-size:20px;
     margin-top:30px;
     line-height:30px;
+    margin-bottom:20px;
+}
+
+.shop__text-comment.my-review-exists {
+    font-size: 18px;
+    margin-top: 30px;
+    line-height: 30px;
+}
+
+.all-review__btn{
+    width:100%;
+    background: #4e82fd;
+    color:white;
+    height:50px;
+    border:none;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.all-review__btn.my-review-exists{
+    width: 100%;
+    background: #4e82fd;
+    color: white;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top:70px;
+}
+
+.transition-create-review{
+    display:inline-block;
+    text-decoration:underline;
+    font-size:20px;
+    margin:15px 0;
+}
+
+/* 自分のレビュー */
+.my-review{
+    margin:20px 0;
+    border-top: 3px solid #ccc;
+    border-bottom: 3px solid #ccc;
+    width:100%;
+}
+
+.my-review__edit{
+    display:flex;
+    justify-content:flex-end;
+    align-items: center;
+    margin-top:10px;
+}
+
+.my-review__update{
+    text-decoration: underline;
+    cursor:pointer;
+    margin-right:10px;
+}
+
+.my-review__delete-btn{
+    border:none;
+    background:transparent;
+    text-decoration: underline;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.review__delete-btn{
+    border:none;
+    background:transparent;
+    text-decoration: underline;
+    font-size:16px;
+    cursor:pointer;
+    float:right;
+}
+
+.fa-star{
+    margin-top:30px;
+    margin-bottom:20px;
+    font-size:25px;
+}
+
+.my-review__comment{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.review-images{
+    display:flex;
+    flex-wrap:wrap;
+    width:100%;
+}
+
+.review-image{
+    margin:10px 10px 10px 0;
+    width:200px;
+    object-fit:cover;
+}
+
+/* レビュー */
+.review{
+    margin: 20px 0;
+    border-bottom: 3px solid #ccc;
+}
+
+.review__comment{
+    margin-bottom:20px;
+    font-size:18px;
 }
 
 .reservation-form__wrapper{
@@ -183,42 +327,6 @@
 .reservation-form__reserve-btn--stripe:hover {
     background: #0b418f;
     transition: 0.3s ease;
-}
-
-/* レビュー */
-.reviews-wrapper{
-    margin-top:40px;
-}
-
-.average-rating{
-    display:flex;
-    align-items: center;
-}
-
-.average-rating__text,
-.average-rating__number,
-.rating-stars{
-    margin-right:10px;
-    font-size:20px;
-}
-
-.rating-stars{
-    display:flex;
-    align-items: center;
-}
-
-.all-review__btn{
-    margin:10px 0;
-}
-
-.review__comment{
-    margin-top:5px;
-}
-
-.review{
-    padding:10px 10px;
-    width:100%;
-    border-bottom:1px solid black;
 }
 
 @media (max-width: 768px) {

@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'shop_id', 'rating', 'comment'];
+    protected $fillable = ['user_id', 'shop_id', 'rating', 'comment', 'review_image'];
 
     public function shop(){
         return $this->belongsTo(Shop::class);

@@ -24,13 +24,15 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'rating' => 'required'
+            'rating' => 'required',
+            'images.*' => 'mimes:jpeg,png'
         ];
     }
 
     public function messages(){
         return [
-            'rating.required' => '５段階評価は必ずご選択ください'
+            'rating.required' => '５段階評価は必ずご選択ください',
+            'images.*.mimes' => 'JPEGまたはPNG形式の画像のみアップロードできます',
         ];
     }
 }

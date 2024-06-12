@@ -110,6 +110,7 @@ STRIPE_SECRET=your-stripe-secret
 
 storage/app/public/shop_imagesディレクトリを作成  
 storage/app/public/qr_codesディレクトリを作成  
+storage/app/public/review_imagesディレクトリを作成  
 php artisan storage:link  
 
 QRコード  

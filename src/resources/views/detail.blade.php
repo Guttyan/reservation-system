@@ -6,16 +6,18 @@
 
 @section('main')
 <div class="shop-wrapper">
-    <div class="shop-header">
-        <a href="/" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
-        <h2 class="shop-name">{{ $shop->name }}</h2>
-    </div>
+    @if(!$my_review)
+        <div class="shop-header">
+            <a href="/" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+            <h2 class="shop-name">{{ $shop->name }}</h2>
+        </div>
+    @endif
     @if(is_array($shop->photo))
         @if(count($shop->photo) > 1)
-            <ul class="slideshow-fade">
+            <ul class="slideshow-fade {{ $my_review ? 'my-review-exists' : '' }}">
                 @foreach($shop->photo as $image)
-                    <li class="slideshow-fade__li">
-                        <img class="slideshow-fade__img" src="{{ asset('storage/shop_images/' . $image) }}" alt="{{ $shop->name }}">
+                    <li class="slideshow-fade__li {{ $my_review ? 'my-review-exists' : '' }}">
+                        <img class="slideshow-fade__img {{ $my_review ? 'my-review-exists' : '' }}" src="{{ asset('storage/shop_images/' . $image) }}" alt="{{ $shop->name }}">
                     </li>
                 @endforeach
             </ul>
@@ -23,52 +25,74 @@
             <img src="{{ asset('storage/shop_images/' . $shop->photo[0]) }}" alt="{{ $shop->name }}" class="shop-image">
         @endif
     @else
-        <img src="{{ $shop->photo }}" alt="{{ $shop->name }}" class="shop-image">
+        <img src="{{ $shop->photo }}" alt="{{ $shop->name }}" class="shop-image {{ $my_review ? 'my-review-exists' : '' }}">
     @endif
-    <p class="shop__text-area">#{{ $shop->area->name }}</p>
+    <p class="shop__text-area {{ $my_review ? 'my-review-exists' : '' }}">#{{ $shop->area->name }}</p>
         @foreach($shop->genres as $genre)
-            <p class="shop__text-genre">#{{ $genre->name }}</p>
+            <p class="shop__text-genre {{ $my_review ? 'my-review-exists' : '' }}">#{{ $genre->name }}</p>
         @endforeach
-    <p class="shop__text-comment">{{ $shop->explanation }}</p>
-
+    <p class="shop__text-comment {{ $my_review ? 'my-review-exists' : '' }}">{{ $shop->explanation }}</p>
     @if($reviews->isNotEmpty())
-        <div class="reviews-wrapper">
-            <div class="average-rating">
-                <p class="average-rating__text">平均評価:</p>
-                <h3 class="average-rating__number"> {{ $averageRating }}</h3>
-                <div class="rating-stars">
-                    @php
-                        $fullStars = floor($averageRating);
-                        $halfStar = $averageRating - $fullStars >= 0.5;
-                    @endphp
-
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= $fullStars)
-                            <i class="fa-solid fa-star" style="color: #FFD700;"></i>
-                        @elseif ($i == $fullStars + 1 && $halfStar)
-                            <i class="fa-solid fa-star-half-alt" style="color: #FFD700;"></i>
-                        @else
-                            <i class="fa-solid fa-star" style="color: #ccc;"></i>
-                        @endif
-                    @endfor
+        <button id="showAllReviews" class="all-review__btn {{ $my_review ? 'my-review-exists' : '' }}">全ての口コミ情報</button>
+    @endif
+    @if(!$my_review && !(Auth::user()->hasRole('admin') || Auth::user()->hasRole('representative')))
+        <a href="/create/review/{{ $shop->id }}" class="transition-create-review">口コミを投稿する</a>
+    @endif
+    @if($my_review)
+        <div class="my-review">
+            <div class="my-review__edit">
+                <a href="/edit/review/{{ $my_review->id }}" class="my-review__update">口コミを編集</a>
+                <form action="/delete/review" class="my-review__delete" method="POST">
+                    @csrf
+                    <input type="hidden" name="review_id" value="{{ $my_review->id }}">
+                    <button class="my-review__delete-btn">口コミを削除</button>
+                </form>
+            </div>
+            @for ($i = 0; $i < 5; $i++)
+                @if ($i < $my_review->rating)
+                    <i class="fa-solid fa-star" style="color: #1964fa;"></i>
+                @else
+                    <i class="fa-solid fa-star" style="color: #ccc;"></i>
+                @endif
+            @endfor
+            <p class="my-review__comment">{{ $my_review->comment }}</p>
+            @if ($my_review && $my_review->review_image)
+                <div class="review-images">
+                    @foreach($my_review->review_image as $image)
+                        <img src="{{ asset('storage/review_images/' . $image) }}" class="review-image">
+                    @endforeach
                 </div>
-            </div>
-            <button id="showAllReviews" class="all-review__btn">すべてのレビューを表示</button>
-            <div id="all-reviews" style="display:none;" class="all-reviews">
-                @foreach ($reviews as $review)
-                    <div class="review">
-                        <div class="review__header">
-                            {{ $review->user->name }}: {{ $review->rating }}
-                            @for ($i = 0; $i < $review->rating; $i++)
-                            <i class="fa-solid fa-star" style="color: #FFD700;"></i>
-                            @endfor
-                        </div>
-                        <p class="review__comment">{{ $review->comment }}</p>
-                    </div>
-                @endforeach
-            </div>
+            @endif
         </div>
     @endif
+    <div id="all-reviews" style="display:none;" class="all-reviews">
+        @foreach ($reviews as $review)
+            <div class="review">
+                @if(Auth::user()->hasRole('admin'))
+                    <form action="/delete/review" method="POST">
+                        @csrf
+                        <input type="hidden" name="review_id" value="{{ $review->id }}">
+                        <button class="review__delete-btn">口コミを削除</button>
+                    </form>
+                @endif
+                @for ($i = 0; $i < 5; $i++)
+                    @if ($i < $review->rating)
+                        <i class="fa-solid fa-star" style="color: #1964fa;"></i>
+                    @else
+                        <i class="fa-solid fa-star" style="color: #ccc;"></i>
+                    @endif
+                @endfor
+                <p class="review__comment">{{ $review->comment }}</p>
+                <div class="review-images">
+                    @if (!is_null($review->review_image) && is_array($review->review_image))
+                        @foreach($review->review_image as $image)
+                            <img src="{{ asset('storage/review_images/' . $image) }}" class="review-image">
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
 
 <div class="reservation-form__wrapper">
@@ -210,10 +234,10 @@
         showAllReviewsBtn.addEventListener('click', function() {
             if (allReviewsDiv.style.display === 'none' || allReviewsDiv.style.display === '') {
                 allReviewsDiv.style.display = 'block';
-                showAllReviewsBtn.textContent = 'レビューを隠す';
+                showAllReviewsBtn.textContent = 'レビューを閉じる';
             } else {
                 allReviewsDiv.style.display = 'none';
-                showAllReviewsBtn.textContent = 'すべてのレビューを表示';
+                showAllReviewsBtn.textContent = '全ての口コミ情報';
             }
         });
     });

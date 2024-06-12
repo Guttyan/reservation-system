@@ -14,25 +14,19 @@ class MypageController extends Controller
     public function getMypage(){
         $user_id = Auth::id();
         $currentDateTime = Carbon::now();
-        
+
         if($currentDateTime->toTimeString() >= '03:00:00'){
-            $reservations = Reservation::where('user_id', $user_id)
-                                        ->where(function ($query) use ($currentDateTime){
-                                            $query->where('date', '>', $currentDateTime->toDateString())
-                                                  ->orWhere(function ($query) use ($currentDateTime){
-                                                    $query->where('date', $currentDateTime->toDateString())
-                                                          ->where('time', '>=', $currentDateTime->subHours(3)->toTimeString());
-                                                });
-                                        })->get();
+            $reservations = Reservation::where('user_id', $user_id)->where(function ($query) use ($currentDateTime){
+                $query->where('date', '>', $currentDateTime->toDateString())->orWhere(function ($query) use ($currentDateTime){
+                    $query->where('date', $currentDateTime->toDateString())->where('time', '>=', $currentDateTime->subHours(3)->toTimeString());
+                });
+            })->get();
         }else{
-            $reservations = Reservation::where('user_id', $user_id)
-                                        ->where(function ($query) use ($currentDateTime){
-                                            $query->where('date', '>=', $currentDateTime->toDateString())
-                                                  ->orWhere(function ($query) use ($currentDateTime){
-                                                    $query->where('date', $currentDateTime->subDay()->toDateString())
-                                                          ->where('time', '>=', $currentDateTime->subHours(3)->toTimeString());
-                                                  });
-                                        })->get();
+            $reservations = Reservation::where('user_id', $user_id)->where(function ($query) use ($currentDateTime){
+                $query->where('date', '>=', $currentDateTime->toDateString())->orWhere(function ($query) use ($currentDateTime){
+                    $query->where('date', $currentDateTime->subDay()->toDateString())->where('time', '>=', $currentDateTime->subHours(3)->toTimeString());
+                });
+            })->get();
         }
 
         $favorite_shops = Auth::user()->favoriteShops;
