@@ -41,7 +41,6 @@
         </form>
       </li>
       <li class="header__nav-item"><a href="/mypage" class="header__nav-item--link">Mypage</a></li>
-      <li class="header__nav-item"><a href="/reservations/completed" class="header__nav-item--link">Write a Review</a></li>
       @if(Auth::user()->hasRole('admin'))
         <li class="header__nav-item"><a href="/admin" class="header__nav-item--link">Create Representative</a></li>
         <li class="header__nav-item"><a href="/create-mail" class="header__nav-item--link">Send Email</a></li>

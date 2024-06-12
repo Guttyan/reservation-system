@@ -17,6 +17,14 @@ class ReviewController extends Controller
     }
 
     public function postCreateReview(ReviewRequest $request){
+        $user_id = Auth::id();
+
+        $existingReview = Review::where('user_id', $user_id)->where('shop_id', $request->shop_id)->first();
+
+        if ($existingReview) {
+            return redirect("/detail/{$request->shop_id}");
+        }
+
         $images = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -25,8 +33,6 @@ class ReviewController extends Controller
                 $images[] = $imageName;
             }
         }
-
-        $user_id = Auth::id();
 
         $data = [
             'user_id' => $user_id,
