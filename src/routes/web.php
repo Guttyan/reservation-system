@@ -71,6 +71,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/admin', [AdminController::class, 'getAdmin']);
         Route::get('/admin/{user_id}', [AdminController::class, 'userDetail']);
         Route::post('/representative/create', [AdminController::class, 'createRepresentative']);
+        Route::get('/import', [AdminController::class, 'showImportForm']);
+        Route::post('/import', [AdminController::class, 'import']);
     });
 
     // 店舗代表者

@@ -52,6 +52,7 @@
       </li>
       <li class="header__nav-item"><a href="/mypage" class="header__nav-item--link">Mypage</a></li>
       @if(Auth::user()->hasRole('admin'))
+        <li class="header__nav-item"><a href="/import" class="header__nav-item--link">Create Shops</a></li>
         <li class="header__nav-item"><a href="/admin" class="header__nav-item--link">Create Representative</a></li>
         <li class="header__nav-item"><a href="/create-mail" class="header__nav-item--link">Send Email</a></li>
       @endif
