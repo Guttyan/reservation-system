@@ -13,7 +13,6 @@
           <option value="high_rating" {{ Request::input('sort') == 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
           <option value="low_rating" {{ Request::input('sort') == 'low_rating' ? 'selected' : '' }}>評価が低い順</option>
         </select>
-        <i class="fa-solid fa-sort-down"></i>
       </div>
       <div class="search-form">
         <div class="search-form__area">

@@ -6,7 +6,7 @@
 
 .container {
     background-color: #f2f2f2;
-    width: 85vw;
+    width: 85%;
     margin:0 auto;
     position: relative;
 }
@@ -16,12 +16,12 @@
     position:fixed;
     display:flex;
     align-items: end;
-    width:85vw;
+    width:85%;
+    padding-right:10px;
     padding-bottom: 15px;
     top:0;
     background:#f2f2f2;
     z-index:20;
-    margin:0 auto;
 }
 
 .header__nav-btn{
@@ -147,6 +147,7 @@
 .sort-form{
     height: 50px;
     width: 18%;
+    min-width:157px;
     border-radius: 7px;
     box-shadow: 4px 4px 4px gray;
     background: white;

@@ -110,6 +110,23 @@
 }
 
 @media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        height: 200px;
+    }
+
+    .header-right {
+        justify-content: space-between;
+    }
+
+    .shop-card__wrapper {
+        padding-top:250px;
+    }
+
+    .search-form {
+        margin-left:10px;
+    }
+
     .shop-card {
         width: calc(50% - 8px);
     }
