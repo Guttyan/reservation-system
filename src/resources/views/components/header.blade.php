@@ -4,29 +4,40 @@
   <h1 class="header-ttl">Rese</h1>
 
 @if(Route::currentRouteName() === 'index' || Route::currentRouteName() === 'search')
-  <form action="/search" class="search-form">
+  <form action="/search" class="header-right" id="searchForm">
       @csrf
-      <div class="search-form__area">
-          <select name="area_id" class="search__area-input">
-            <option value="">All area</option>
-              @foreach($areas as $area)
-                <option value="{{ $area->id }}" {{ Request::input('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
-              @endforeach
-          </select>
+      <div class="sort-form">
+        <select name="sort" id="sort" class="sort-form__input">
+          <option value="" selected disabled>並び替え：評価高/低</option>
+          <option value="random" {{ Request::input('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
+          <option value="high_rating" {{ Request::input('sort') == 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
+          <option value="low_rating" {{ Request::input('sort') == 'low_rating' ? 'selected' : '' }}>評価が低い順</option>
+        </select>
         <i class="fa-solid fa-sort-down"></i>
       </div>
-      <div class="search-form__genre">
-          <select name="genre_id" class="search__genre-input">
-            <option value="">All genre</option>
-            @foreach($genres as $genre)
-              <option value="{{ $genre->id }}" {{ Request::input('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
+      <div class="search-form">
+        <div class="search-form__area">
+          <select name="area_id" class="search__area-input">
+            <option value="">All area</option>
+            @foreach($areas as $area)
+            <option value="{{ $area->id }}" {{ Request::input('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
             @endforeach
           </select>
           <i class="fa-solid fa-sort-down"></i>
-      </div>
-      <div class="search-form__text">
+        </div>
+        <div class="search-form__genre">
+          <select name="genre_id" class="search__genre-input">
+            <option value="">All genre</option>
+            @foreach($genres as $genre)
+            <option value="{{ $genre->id }}" {{ Request::input('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
+            @endforeach
+          </select>
+          <i class="fa-solid fa-sort-down"></i>
+        </div>
+        <div class="search-form__text">
           <button class="search-form__btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           <input type="text" name="keyword" class="search__text-input" placeholder="Search ..." value="{{ Request::input('keyword') }}">
+        </div>
       </div>
   </form>
 @endif
@@ -55,5 +66,9 @@
     @endif
 </ul>
 
-
+<script>
+document.getElementById('sort').addEventListener('change', function() {
+    document.getElementById('searchForm').submit();
+});
+</script>
 </header>

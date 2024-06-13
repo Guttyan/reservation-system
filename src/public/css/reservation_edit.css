@@ -74,42 +74,6 @@
     line-height: 30px;
 }
 
-/* レビュー */
-.reviews-wrapper {
-    margin-top: 40px;
-}
-
-.average-rating {
-    display: flex;
-    align-items: center;
-}
-
-.average-rating__text,
-.average-rating__number,
-.rating-stars {
-    margin-right: 10px;
-    font-size: 20px;
-}
-
-.rating-stars {
-    display: flex;
-    align-items: center;
-}
-
-.all-review__btn {
-    margin: 10px 0;
-}
-
-.review__comment {
-    margin-top: 5px;
-}
-
-.review {
-    padding: 10px 10px;
-    width: 100%;
-    border-bottom: 1px solid black;
-}
-
 .reservation-form__wrapper{
     width: 40%;
     height: 85vh;

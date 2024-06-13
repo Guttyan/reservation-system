@@ -80,6 +80,22 @@ class ShopController extends Controller
             }
         }
 
+        if ($request->filled('sort')) {
+            $sortOption = $request->sort;
+
+            if ($sortOption == 'random') {
+                $shops = $shops->shuffle();
+            } else {
+                $shops = $shops->sortBy(function($shop) use ($averageRatings, $sortOption) {
+                    $rating = $averageRatings[$shop->id] ?? null;
+                    if ($rating === null) {
+                        return PHP_INT_MAX; // 評価がない店舗は最後に表示
+                    }
+                    return $sortOption == 'high_rating' ? -$rating : $rating;
+                })->values();
+            }
+        }
+
         return view('index', compact('shops', 'genres', 'areas', 'averageRatings'));
     }
 }

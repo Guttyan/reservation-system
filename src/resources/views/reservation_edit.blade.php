@@ -30,45 +30,6 @@
             <p class="shop__text-genre">#{{ $genre->name }}</p>
         @endforeach
     <p class="shop__text-comment">{{ $shop->explanation }}</p>
-
-    @if($reviews->isNotEmpty())
-        <div class="reviews-wrapper">
-            <div class="average-rating">
-                <p class="average-rating__text">平均評価:</p>
-                <h3 class="average-rating__number"> {{ $averageRating }}</h3>
-                <div class="rating-stars">
-                    @php
-                        $fullStars = floor($averageRating);
-                        $halfStar = $averageRating - $fullStars >= 0.5;
-                    @endphp
-
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= $fullStars)
-                            <i class="fa-solid fa-star" style="color: #FFD700;"></i>
-                        @elseif ($i == $fullStars + 1 && $halfStar)
-                            <i class="fa-solid fa-star-half-alt" style="color: #FFD700;"></i>
-                        @else
-                            <i class="fa-solid fa-star" style="color: #ccc;"></i>
-                        @endif
-                    @endfor
-                </div>
-            </div>
-            <button id="showAllReviews" class="all-review__btn">すべてのレビューを表示</button>
-            <div id="all-reviews" style="display:none;" class="all-reviews">
-                @foreach ($reviews as $review)
-                    <div class="review">
-                        <div class="review__header">
-                            {{ $review->user->name }}: {{ $review->rating }}
-                            @for ($i = 0; $i < $review->rating; $i++)
-                            <i class="fa-solid fa-star" style="color: #FFD700;"></i>
-                            @endfor
-                        </div>
-                        <p class="review__comment">{{ $review->comment }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
 </div>
 
 <div class="reservation-form__wrapper">
@@ -234,16 +195,6 @@
             $active.fadeOut(1500).removeClass("fade");
             $next.fadeIn(1500).addClass("fade");
         },5000);
-    });
-
-    // レビュー表示
-    document.getElementById("showAllReviews").addEventListener("click", function () {
-        var allReviews = document.getElementById("all-reviews");
-        if (allReviews.style.display === "none") {
-            allReviews.style.display = "block";
-        } else {
-            allReviews.style.display = "none";
-        }
     });
 </script>
 
