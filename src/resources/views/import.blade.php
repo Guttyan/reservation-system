@@ -6,7 +6,7 @@
 
 @section('main')
 <h2 class="ttl">店舗作成</h2>
-<form action="/import" class="import-form" method="POST" enctype="multipart/form-data">
+<form action="{{ url('/import') }}" class="import-form" method="POST" enctype="multipart/form-data">
     @csrf
     <p class="form-head">CSVファイルをインポート</p>
     <div class="import-group">
@@ -15,6 +15,15 @@
         <input type="file" name="csv_file" id="csv_file" class="input-csv" required>
     </div>
     <p id="file_name" class="file-name"></p>
+    @if ($errors->any())
+        <div class="error-message">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if (session('error'))
         <div class="error-message">
             {!! session('error') !!}

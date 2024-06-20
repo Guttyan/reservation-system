@@ -44,7 +44,18 @@ class AdminController extends Controller
     public function import(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'csv_file' => 'required|file|mimes:csv,txt',
+            'csv_file' => [
+                'required',
+                'file',
+                'mimes:csv,txt',
+                function ($attribute, $value, $fail) {
+                    $extension = $value->getClientOriginalExtension();
+
+                    if (!in_array(strtolower($extension), ['csv', 'txt'])) {
+                        $fail('CSV形式のファイルを選択してください。');
+                    }
+                },
+            ],
         ], [
             'csv_file.required' => 'CSVファイルを選択してください。',
             'csv_file.file' => 'ファイルを選択してください。',
