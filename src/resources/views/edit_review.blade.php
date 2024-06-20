@@ -64,7 +64,7 @@
     </div>
 
     <div class="review-form__wrapper">
-        <form action="/edit/review" method="POST" class="review-form" enctype="multipart/form-data">
+        <form action="/edit/review" method="POST" class="review-form" id="review-form" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <p class="input-head">体験を評価してください</p>
@@ -98,6 +98,7 @@
                     @enderror
                 </div>
             </div>
+            <button type="button" id="clearImageButton" class="clear-btn">画像選択をクリア</button>
             <div id="preview" class="preview">
                 @if(is_array($my_review->review_image))
                     @foreach($my_review->review_image as $image)
@@ -107,27 +108,47 @@
             </div>
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <input type="hidden" name="review_id" value="{{ $my_review->id }}">
+            <input type="hidden" name="delete_images" id="delete-images-field" value="0">
             <button class="review-form__btn">口コミを編集</button>
         </form>
     </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const textarea = document.getElementById('textarea');
-        const charCounter = document.getElementById('char-counter');
+document.addEventListener('DOMContentLoaded', function () {
+    const textarea = document.getElementById('textarea');
+    const charCounter = document.getElementById('char-counter');
+    const imageInput = document.getElementById('image-input');
+    const preview = document.getElementById('preview');
+    const deleteImagesField = document.getElementById('delete-images-field');
+    const clearImageButton = document.getElementById('clearImageButton');
 
-        charCounter.textContent = `${textarea.value.length}/400（最高文字数）`;
+    // 文字数カウンターの初期化
+    charCounter.textContent = `${textarea.value.length}/400（最高文字数）`;
 
-        textarea.addEventListener('input', function () {
-            charCounter.textContent = `${this.value.length}/400（最高文字数）`;
-        });
+    // テキストエリアの入力監視
+    textarea.addEventListener('input', function () {
+        charCounter.textContent = `${this.value.length}/400（最高文字数）`;
+    });
 
-        const imageInput = document.getElementById('image-input');
-        const preview = document.getElementById('preview');
+    // 画像選択をクリアする関数
+    function clearFileInput() {
+        const fileInput = document.getElementById('image-input');
+        fileInput.value = '';
+        deleteImagesField.value = "1";
+        preview.innerHTML = '';
+    }
+    clearImageButton.addEventListener('click', clearFileInput);
 
-        imageInput.addEventListener('change', function () {
-            preview.innerHTML = ''; // 既存のプレビューをクリア
+    // ファイルが選択された後の処理
+    imageInput.addEventListener('change', function () {
+        preview.innerHTML = '';
+
+        if (this.files.length === 0) {
+            // ファイルが選択されなかった場合
+            deleteImagesField.value = "1"; // 画像を削除するフラグを設定
+        } else {
+            // 新しい画像をプレビューに追加
             for (const file of this.files) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -138,7 +159,9 @@
                 }
                 reader.readAsDataURL(file);
             }
-        });
+            deleteImagesField.value = "0"; // 新しい画像が選択されたので削除フラグをリセット
+        }
     });
+});
 </script>
 @endsection

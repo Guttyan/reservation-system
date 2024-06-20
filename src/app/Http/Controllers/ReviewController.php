@@ -58,6 +58,10 @@ class ReviewController extends Controller
 
     public function editReview(ReviewRequest $request){
         $review = Review::find($request->review_id);
+
+        $review->rating = $request->input('rating');
+        $review->comment = $request->input('comment');
+
         $images = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -65,13 +69,12 @@ class ReviewController extends Controller
                 $image->storeAs('public/review_images', $imageName);
                 $images[] = $imageName;
             }
+            $review->review_image = json_encode($images);
+        }elseif($request->input('delete_images') == 1){
+            $review->review_image = null;
         }
 
-        $review->update([
-            'rating' => $request->rating,
-            'comment' => $request->input('comment'),
-            'review_image' => $images ? json_encode($images) : null
-        ]);
+        $review->save();
 
         return redirect("/detail/{$request->shop_id}");
     }
